@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial;
+    box-sizing: border-box;
+    transition-duration: .3s;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.topContainer{
+    background: linear-gradient(to right, #677CE6, #7550A9);
+    height: 100vh;
+    color: #fff;
+    padding: 20px 50px 20px 50px;
+    position: relative;
+}
+.topNav{
+
+}
+.topNav ul{
+    display: flex;
+    list-style-type: none;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: flex-start;
+}
+.topNav ul li{
+    padding: 0 20px 0 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+}
+.header-logo{
+    font-size: 20px !important;
+}
+.topContainer section{
+    padding-top: 80px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.top_div_text > h1, h2,h3{
+    font-weight: 100;
+}
+.top_div_text h2{
+    margin-top: 48px;
+    font-size: 22px;
+}
+.top_div_text h1{
+    font-size: 32px;
+}
+.topContainer section p{
+    margin-top: 20px;
+    font-size: 15px;
+    line-height: 32px;
+    font-weight: 100;
+}
+.phone_bg{
+    flex: 3;
+    text-align: right;
+}
+.top_div_text{
+    flex: 2;
+}
+.top_div_text button{
+    padding:10px 50px;
+    margin-top: 40px;
+    border: 0;
+    font-weight: bold;
+    font-size: 16px;
+    color: #7550A9;
+    cursor: pointer;
+}
+.topContainer form{
+    width: 400px;
+    height: 200px;
+    background-color: rgba(255,255,255,.2);
+    padding: 30px;
+
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -200px;
+    margin-top: -100px;
+}
+.topContainer form div{
+    margin-bottom: 10px;
+}
+.topContainer form div input{
+    width: 100%;
+    padding: 8px;
+    border: 0;
+    outline: #677CE6;
+}
+.topContainer form div button{
+    width: 100%;
+    padding:8px;
+    background-color: #844ecf;
+    margin-top: 20px;
+    cursor: pointer;
+    color: #fff;
+    border: 0;
+}
+.topContainer form div button:hover{
+    background-color: #bc95f3;
+    color: #000;
+}
+@media(max-width:900px){
+    .topContainer{
+        min-height: 100vh;
+        height: unset;
+    }
+    .topContainer section{
+        flex-direction: column;
+    }
+    .phone_bg{
+        margin-top: 30px;
+        text-align: center;
+    }
+    .topContainer form{
+        width: 90%;
+        height: 200px;
+        background-color: rgba(255,255,255,.2);
+        padding: 30px;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        margin-left: -45%;
+        margin-top: -100px;
+    }
+}

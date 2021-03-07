@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+*{
+    margin:0;
+    padding:0;
+    font-family: Arial;
+    box-sizing: border-box;
+    transition-duration: .3s;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+.topContainer{
+    background: linear-gradient(to right, #677CE6, #7550A9);
+    height: 100vh;
+    color: #000;
+    padding: 20px 50px 20px 50px;
+    /* position: relative; */
+}
+.chatContainer{
+    width: 600px;
+    height: 700px;
+    background-color: #fff;
+    /* border: 4px solid #ddd; */
+    position: relative;
+    padding-top: 70px;
+    overflow: hidden;
+}
+.chatTopNav{
+    background-color: #b3bdee;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    left: 0;top:0;
+    /* justify-content: space-between; */
+}
+.nameBanner{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: rgb(71, 127, 247);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+.nickName{
+    padding-left: 20px;
+}
+.chatArea{
+    height: 570px;
+    overflow-y: scroll;
+    padding:20px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.chatArea::-webkit-scrollbar {
+    display: none;
+}
+.chatTextBox{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #b3bdee;
+    display: flex;
+    height: 40px;
+}
+.chatTextBox textarea{
+    width: 100%;
+    height: 100%;
+    resize: none;
+    outline: none;
+    font-size: 16px;
+    overflow: hidden;
+    padding: 2px 10px 2px 10px;
+}
+.chatTextBox button{
+    padding:8px;
+    cursor: pointer;
+}
+.messageReceive{
+    display: flex;
+}
+.messageReceive .nameBanner{
+    background-color: #7550A9;
+}
+.messageReceive .message{
+    background-color: teal;
+    color: #fff;
+    padding:6px 8px;
+    font-size: 15px;
+    margin-left: 10px;
+    position: relative;
+    max-width: 400px;
+    border-radius: 3px;
+}
+.messageReceive .message::before{
+    content: "";
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    background-color: inherit;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
+.messageSend, .messageReceive{
+    margin-bottom: 20px;
+    align-items: center;
+}
+.messageSend{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.messageSend .nameBanner{
+    background-color: #00ccff;
+}
+.messageSend .message{
+    background-color: #02bceb;
+    color: #fff;
+    padding:6px 8px;
+    font-size: 15px;
+    margin-right: 10px;
+    position: relative;
+    max-width: 400px;
+    border-radius: 3px;
+}
+.messageSend .message::before{
+    content: "";
+    position: absolute;
+    right: -5px;
+    top: 50%;
+    background-color: inherit;
+    margin-top: -5px;
+    width: 10px;
+    height: 10px;
+    transform: rotate(45deg);
+}
