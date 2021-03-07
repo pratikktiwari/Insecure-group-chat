@@ -15,15 +15,16 @@
     function addChat($username,$message){
         query("INSERT INTO chat_records (username,message,dateTime) VALUES ('$username','$message',NOW())");
     }
+    //returning a single row
     function getChatData(){
         $res = query("SELECT * FROM chat_records");
-		if(!$res){return false;}
-		$list = array();
-		while($row = getRows($res)){
-			$list['message'] = $row['message'];
+        if(!$res){return false;}
+        $list = array();
+        while($row = getRows($res)){
+            $list['message'] = $row['message'];
             $list['username'] = $row['username'];
-		}
-		return json_encode($list);
+        }
+        return json_encode($list);
     }
 
  ?>
