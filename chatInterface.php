@@ -43,7 +43,7 @@
         </div>
     </div>
     <script>
-        addToChat = () => {
+        const addToChat = () => {
             const sendTextBox = document.getElementById("sendTextBox")
             let chatData = sendTextBox.value
             chatData = chatData.replace(/\s+/g, ' ').trim();
@@ -60,6 +60,7 @@
             `
             sendTextBox.value = ""
             scrollToBottom()
+            saveChatData("abcd", chatData)
         }
         document.querySelector('#sendTextBox').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -67,11 +68,13 @@
                 addToChat()
             }
         });
-        scrollToBottom = () => {
+        const scrollToBottom = () => {
             const container = document.getElementById("chatArea")
             container.scrollTo(0, container.offsetHeight);
         }
     </script>
+    <script src="js/script.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" defer></script> -->
 </body>
 
 </html>

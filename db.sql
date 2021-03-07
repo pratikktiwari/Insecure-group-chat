@@ -1,0 +1,6 @@
+CREATE TABLE chat_records(
+    id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    username VARCHAR(256) NOT NULL,
+    message TEXT NOT NULL,
+    dateTime DATETIME NOT NULL
+);
