@@ -42,13 +42,14 @@ function receiveInitialChats(current_user) {
             const info = doc.responseText;
 
             const decodedData = JSON.parse(info);
+            document.getElementById("chatArea").innerHTML = ""
 
             for (let i = 0; i < decodedData.length; i++) {
                 const chatItem = decodedData[i];
                 if (chatItem.username === current_user) {
                     document.getElementById("chatArea").innerHTML +=
                         `<div class="messageSend">
-                            <div class="nameBanner">${chatItem.username}</div>
+                            <div class="nameBanner">${chatItem.username[0].toUpperCase()}</div>
                             <div class="message">
                                 ${chatItem.message}
                             </div>
@@ -56,7 +57,7 @@ function receiveInitialChats(current_user) {
                 } else {
                     document.getElementById("chatArea").innerHTML +=
                         `<div class="messageReceive">
-                            <div class="nameBanner">${chatItem.username[0]}</div>
+                            <div class="nameBanner">${chatItem.username[0].toUpperCase()}</div>
                             <div class="message">
                                 ${chatItem.message}
                             </div>
@@ -67,7 +68,42 @@ function receiveInitialChats(current_user) {
     }
     doc.send(data)
 }
+const getLastMessageId = () => {
+    const doc = new XMLHttpRequest()
+    const url = "saveChatData.php"
+    const data = "getLastMessageID=set"
+    doc.open("POST", url, true)
+    doc.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+    doc.onreadystatechange = () => {
+        if (doc.readyState == 4 && doc.status == 200) {
+            message_id = doc.responseText
+            window.sessionStorage.setItem("last_message_id", message_id)
+        }
+    }
+    doc.send(data)
+}
 const scrollToBottom = () => {
     const container = document.getElementById("chatArea")
-    container.scrollTo(0, container.offsetHeight);
+    container.scrollTo(0, container.scrollHeight);
+}
+const scrolledBottom = () => {
+    const element = document.getElementById("chatArea")
+    // const diff = Math.ceil(element.scrollHeight - element.scrollTop) === element.clientHeight
+    const diff = Math.abs(Math.ceil(element.scrollHeight - element.scrollTop) - element.clientHeight)
+    return diff < 65
+}
+function clear(message) {
+
+    const doc = new XMLHttpRequest()
+    const url = "saveChatData.php"
+
+    const data = "messageSendReceive=set&username=" + "username" + "&message=" + message
+    doc.open("POST", url, true)
+    doc.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+    doc.onreadystatechange = () => {
+        if (doc.readyState == 4 && doc.status == 200) { }
+    }
+    doc.send(data)
 }

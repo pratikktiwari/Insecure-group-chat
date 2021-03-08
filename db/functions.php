@@ -15,6 +15,9 @@
     function addChat($username,$message){
         query("INSERT INTO chat_records (username,message,dateTime) VALUES ('$username','$message',NOW())");
     }
+    function clearChatData(){
+        query("DELETE FROM chat_records");
+    }
     //returning a single row
     class CHAT{
         public $id, $username, $message;
@@ -41,8 +44,10 @@
         if(!$res){return false;}
         $list = array();
         $row = getRows($res);
-        $list['id'] = $row['id'];
-        return json_encode($list);
+        // $list['id'] = $row['id'];
+        $id = $row['id'];
+        return $id;
     }
+    //last message id
 
  ?>
