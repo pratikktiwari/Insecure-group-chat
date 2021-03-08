@@ -13,6 +13,8 @@
 			addChat($username, $message);
             echo getChatData();
 		}
+	}else if(isset($_POST['messageInitialReceive'])){
+		echo getChatData();
 	}
 	else{
 		echo "Some error occured. Try again.";

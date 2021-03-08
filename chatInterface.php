@@ -11,6 +11,7 @@
 
 <body>
     <div class="topContainer">
+        <input id="current_username" type="hidden" disabled value=<?php echo $_SESSION['username'] ; ?> />
         <div class="chatContainer">
             <div class="chatTopNav">
                 <div class="nameBanner">P</div>
@@ -19,7 +20,7 @@
                 </div>
             </div>
             <div class="chatArea" id="chatArea">
-                <div class="messageReceive">
+                <!-- <div class="messageReceive">
                     <div class="nameBanner">P</div>
                     <div class="message">
                         hello world how are you
@@ -34,7 +35,7 @@
                         hello world how are you
                         hello world how are you
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="chatTextBox">
                 <textarea id="sendTextBox"></textarea>
@@ -43,6 +44,14 @@
         </div>
     </div>
     <script>
+        const current_username = document.getElementById("current_username").value
+        document.body.onload = () => {
+            receiveInitialChats(current_username)
+        }
+        //infinite receive chat multiple times => 
+        //check last message id => compare and push to innerHTML
+        // window.setInterval(() => { receiveInitialChats(current_username) }, 1000)
+
         const addToChat = () => {
             const sendTextBox = document.getElementById("sendTextBox")
             let chatData = sendTextBox.value
@@ -52,15 +61,16 @@
 
             chatArea.innerHTML += `
                 <div class="messageSend">
-                    <div class="nameBanner">P</div>
+                    <div class="nameBanner">${current_username[0]}</div>
                     <div class="message">
                         ${chatData}
                     </div>
                 </div>
             `
             sendTextBox.value = ""
+
             scrollToBottom()
-            saveChatData("abcd", chatData)
+            saveChatData(current_username, chatData)
         }
         document.querySelector('#sendTextBox').addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
@@ -68,10 +78,7 @@
                 addToChat()
             }
         });
-        const scrollToBottom = () => {
-            const container = document.getElementById("chatArea")
-            container.scrollTo(0, container.offsetHeight);
-        }
+
     </script>
     <script src="js/script.js"></script>
     <!-- <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" defer></script> -->
