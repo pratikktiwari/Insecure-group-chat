@@ -9,19 +9,35 @@
 
 		// $message = str_replace("'","\"\"",$message);//replace with double quote
 		$message = str_replace("'","''",$message);//replace single with double
+		//  $message = str_replace("&","&amp;",$message);//replace & with &amp;
 
 		if($message=="clear_the_clutter(*)"){
 			clearChatData();
-			echo "";
+			$list = array();
+			$list['res'] = "operation_success";
+			echo json_encode($list);
 		}else if(strlen($message) == 0){
 			// echo "abcd";
 		}else{
 			addChat($username, $message);
-            echo getChatData();
+
+			$list = array();
+			$list['res'] = "added";
+
+            echo json_encode($list);
 		}
-	}else if(isset($_POST['messageInitialReceive'])){
-		echo getChatData();
-	}else if(isset($_POST['getLastMessageID'])){
+	}
+	// else if(isset($_POST['messageInitialReceive'])){
+	// 	echo getChatData();
+	// }
+	else if(isset($_POST['messageInitialReceive']) && isset($_POST['startFrom'])){
+		$startFrom = $_POST['startFrom'];
+		// $list = new array();
+		// echo $startFrom;
+		echo getChatDataFromId($startFrom);
+	}
+	
+	else if(isset($_POST['getLastMessageID'])){
 		echo getLastMessageId();
 	}
 	else{

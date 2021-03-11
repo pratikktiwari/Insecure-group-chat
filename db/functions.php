@@ -39,6 +39,18 @@
         }
         return json_encode($list);
     }
+    function getChatDataFromId($start_from){
+        $res = query("SELECT * FROM chat_records WHERE id > '$start_from'");
+        if(!$res){return false;}
+        $list = array();
+        while($row = getRows($res)){
+            $chat = new CHAT($row['id'], $row['username'], $row['message']);
+            // $list['message'] = $row['message'];
+            // $list['username'] = $row['username'];
+            $list[] = $chat;
+        }
+        return json_encode($list);
+    }
     function getLastMessageId(){
         $res = query("SELECT id FROM chat_records ORDER BY id DESC LIMIT 1");
         if(!$res){return false;}

@@ -3,6 +3,7 @@ function saveChatData(username, message) {
     const doc = new XMLHttpRequest()
     const url = "saveChatData.php"
 
+    message = message.replace("&", "%26")
     const data = "messageSendReceive=set&username=" + username + "&message=" + message
     doc.open("POST", url, true)
     doc.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -12,16 +13,18 @@ function saveChatData(username, message) {
 
             const info = doc.responseText;
 
-            // const decoded = JSON.parse(info);
+            // console.log(info)
 
-            // document.getElementById("chatArea").innerHTML +=
-            //     `<div class="messageReceive">
-            //         <div class="nameBanner">P</div>
-            //         <div class="message">
-            //             ${info}
-            //         </div>
-            //     </div>`
-            // createDOMDoctor(decoded);
+            const decodedData = JSON.parse(info);
+
+            if (decodedData.res && decodedData.res == "operation_success") {
+                document.getElementById("chatArea").innerHTML = ""
+                document.getElementById("last_message_id").value = "0"
+                console.log("cleared")
+                return
+            } else {
+                receiveInitialChats(username)
+            }
         }
     }
     doc.send(data)
@@ -31,7 +34,8 @@ function receiveInitialChats(current_user) {
     const doc = new XMLHttpRequest()
     const url = "saveChatData.php"
 
-    const data = "messageInitialReceive=set"
+    const last_chat_id = document.getElementById("last_message_id").value
+    const data = "messageInitialReceive=set&startFrom=" + last_chat_id
 
     doc.open("POST", url, true)
     doc.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
@@ -39,12 +43,15 @@ function receiveInitialChats(current_user) {
     doc.onreadystatechange = () => {
         if (doc.readyState == 4 && doc.status == 200) {
 
-            const info = doc.responseText;
+            const info = doc.responseText
 
             const decodedData = JSON.parse(info);
-            document.getElementById("chatArea").innerHTML = ""
+
+            // alert(info)
+            // document.getElementById("chatArea").innerHTML = ""
 
             for (let i = 0; i < decodedData.length; i++) {
+                // console.log(i)
                 const chatItem = decodedData[i];
                 if (chatItem.username === current_user) {
                     document.getElementById("chatArea").innerHTML +=
@@ -63,7 +70,10 @@ function receiveInitialChats(current_user) {
                             </div>
                         </div>`
                 }
+                // document.getElementById("last_message_id").value = chatItem.id
             }
+            if (decodedData.length >= 1)
+                document.getElementById("last_message_id").value = decodedData[decodedData.length - 1].id
         }
     }
     doc.send(data)

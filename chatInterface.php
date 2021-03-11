@@ -1,5 +1,6 @@
 <?php
     session_start();
+    $_SESSION['last_msg'] = 0;
 
 ?>
 <html>
@@ -8,11 +9,14 @@
     <title>Group chat app</title>
     <link rel="stylesheet" href="css/chat.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 
 <body>
     <div class="topContainer">
         <input id="current_username" type="hidden" disabled value=<?php echo $_SESSION['username'] ; ?> />
+        <input id="last_message_id" name="startFrom" type="hidden" disabled value="0" />
+
         <div class="chatContainer">
             <div class="chatTopNav">
                 <div class="nameBanner">
@@ -40,13 +44,42 @@
                     </div>
                 </div> -->
             </div>
+            <div id="chatEmojiDiv">
+                <!-- &#128578;
+                &#128528;
+                &#128533;
+                &#128543;
+                &#129321; -->
+            </div>
             <div class="chatTextBox">
                 <textarea id="sendTextBox"></textarea>
+                <!-- <button onclick="showEmoji()">&#128578;</button> -->
                 <button onclick="addToChat()">Send</button>
             </div>
         </div>
     </div>
     <script>
+        const chatEmojiDiv = document.getElementById("chatEmojiDiv")
+        chatEmojiDiv.style.display = "none"
+        const showEmoji = () => {
+            if (chatEmojiDiv.style.display === "none") {
+                chatEmojiDiv.style.display = "block";
+            } else {
+                chatEmojiDiv.style.display = "none"
+            }
+        }
+        const emojis = ["&#128578;", "&#128528;", "&#128533;", "&#128543;", "&#129321;"];
+
+        for (let i = 0; i < emojis.length; i++) {
+            const single_emoji = document.createElement("span")
+            single_emoji.innerHTML = emojis[i]
+            chatEmojiDiv.appendChild(single_emoji)
+
+            single_emoji.addEventListener("click", () => {
+                document.getElementById("sendTextBox").value += emojis[i]
+            })
+        }
+
         const current_username = document.getElementById("current_username").value
         document.body.onload = () => {
             receiveInitialChats(current_username)
@@ -65,6 +98,7 @@
             setTimeout(refreshChat, 500)
         }, 500)
         setTimeout(refreshChat, 500)
+        // scrollToBottom();
 
         const addToChat = () => {
             const sendTextBox = document.getElementById("sendTextBox")
@@ -73,14 +107,14 @@
 
             const chatArea = document.getElementById("chatArea")
 
-            chatArea.innerHTML += `
-                <div class="messageSend">
-                    <div class="nameBanner">${current_username[0].toUpperCase()}</div>
-                    <div class="message">
-                        ${chatData}
-                    </div>
-                </div>
-            `
+            // chatArea.innerHTML += `
+            //     <div class="messageSend">
+            //         <div class="nameBanner">${current_username[0].toUpperCase()}</div>
+            //         <div class="message">
+            //             ${chatData}
+            //         </div>
+            //     </div>
+            // `
             sendTextBox.value = ""
 
             scrollToBottom()

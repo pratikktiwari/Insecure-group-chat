@@ -132,9 +132,14 @@ a{
     align-items: center;
 }
 .message img{
-    width: 200px !important;
+    /* width: 200px !important; */
     /* height: 100px !important; */
     overflow: hidden;
+}
+.message *{
+    width: 100% !important;
+    overflow: hidden !important;
+
 }
 .messageSend{
     display: flex;
@@ -157,6 +162,7 @@ a{
 }
 .messageSend .message *{
     z-index: 1;
+    /* overflow: hidden; */
 }
 .messageSend .message::before{
     content: "";
@@ -168,4 +174,18 @@ a{
     width: 10px;
     height: 10px;
     transform: rotate(45deg);
+}
+#chatEmojiDiv{
+    background-color: #fff;
+    box-shadow: 0rem 0rem 2rem rgba(0, 0, 0, 0.55);
+    max-width: 250px;
+    position: absolute;
+    left: 10px;
+    bottom: 50px;
+    padding: 10px;
+    z-index: 99999999;
+}
+#chatEmojiDiv span{
+    cursor: pointer;
+    font-size: 20px;
 }
