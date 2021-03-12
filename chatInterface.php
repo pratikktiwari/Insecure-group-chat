@@ -95,8 +95,8 @@
         const refreshChat = () => window.setTimeout(() => {
             receiveInitialChats(current_username);
             scrolledBottom() && scrollToBottom();
-            setTimeout(refreshChat, 500)
-        }, 500)
+            setTimeout(refreshChat, 5000)
+        }, 5000)
         setTimeout(refreshChat, 500)
         // scrollToBottom();
 

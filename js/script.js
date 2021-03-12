@@ -4,6 +4,9 @@ function saveChatData(username, message) {
     const url = "saveChatData.php"
 
     message = message.replace("&", "%26")
+    // message = encodeURIComponent(message)
+    message = message.replace("+", "%2b")
+    // message = Uri.EscapeUriString(message)
     const data = "messageSendReceive=set&username=" + username + "&message=" + message
     doc.open("POST", url, true)
     doc.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
