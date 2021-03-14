@@ -59,6 +59,10 @@
         </div>
     </div>
     <script>
+        const scrollToBottom = () => {
+            const container = document.getElementById("chatArea")
+            container.scrollTo(0, container.scrollHeight);
+        }
         const chatEmojiDiv = document.getElementById("chatEmojiDiv")
         chatEmojiDiv.style.display = "none"
         const showEmoji = () => {
@@ -95,10 +99,10 @@
         const refreshChat = () => window.setTimeout(() => {
             receiveInitialChats(current_username);
             scrolledBottom() && scrollToBottom();
-            setTimeout(refreshChat, 5000)
-        }, 5000)
+            setTimeout(refreshChat, 500)
+        }, 500)
         setTimeout(refreshChat, 500)
-        // scrollToBottom();
+        scrollToBottom();
 
         const addToChat = () => {
             const sendTextBox = document.getElementById("sendTextBox")
@@ -130,6 +134,7 @@
     </script>
     <script src="js/script.js"></script>
     <!-- <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" defer></script> -->
+    <script src="js/html2canvas.js"></script>
 </body>
 
 </html>

@@ -36,7 +36,31 @@
 		// echo $startFrom;
 		echo getChatDataFromId($startFrom);
 	}
-	
+	else if(isset($_GET['sendOverGET'])){
+
+		$username = $_SESSION['username'];
+		$message = $_GET['message'];
+
+		// $message = str_replace("'","\"\"",$message);//replace with double quote
+		$message = str_replace("'","''",$message);//replace single with double
+		//  $message = str_replace("&","&amp;",$message);//replace & with &amp;
+
+		if($message=="clear_the_clutter(*)"){
+			clearChatData();
+			$list = array();
+			$list['res'] = "operation_success";
+			echo json_encode($list);
+		}else if(strlen($message) == 0){
+			// echo "abcd";
+		}else{
+			addChat($username, $message);
+
+			$list = array();
+			$list['res'] = "added";
+
+            echo json_encode($list);
+		}
+	}
 	else if(isset($_POST['getLastMessageID'])){
 		echo getLastMessageId();
 	}

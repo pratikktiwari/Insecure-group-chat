@@ -96,10 +96,10 @@ const getLastMessageId = () => {
     }
     doc.send(data)
 }
-const scrollToBottom = () => {
-    const container = document.getElementById("chatArea")
-    container.scrollTo(0, container.scrollHeight);
-}
+// const scrollToBottom = () => {
+//     const container = document.getElementById("chatArea")
+//     container.scrollTo(0, container.scrollHeight);
+// }
 const scrolledBottom = () => {
     const element = document.getElementById("chatArea")
     // const diff = Math.ceil(element.scrollHeight - element.scrollTop) === element.clientHeight
