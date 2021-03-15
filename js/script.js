@@ -120,3 +120,8 @@ function clear(message) {
     }
     doc.send(data)
 }
+
+
+
+
+
