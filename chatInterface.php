@@ -61,8 +61,6 @@
 
 
 
-
-
     <script>
         const scrollToBottom = () => {
             const container = document.getElementById("chatArea")
