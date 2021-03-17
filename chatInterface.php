@@ -2,6 +2,10 @@
     session_start();
     $_SESSION['last_msg'] = 0;
 
+    if(!isset($_SESSION['username']) || !isset($_SESSION['key'])){
+        header("Location:askName.php");
+    }
+
 ?>
 <html>
 

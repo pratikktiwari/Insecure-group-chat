@@ -17,10 +17,10 @@
     <div class="topContainer">
         <form action="askName.php" method="post">
             <div>
-                <input type="text" name="username" placeholder="Nick Name" />
+                <input type="text" name="username" placeholder="Nick Name" required/>
             </div>
             <div>
-                <input type="text" name="key" placeholder="Pass code" />
+                <input type="text" name="key" placeholder="Pass code" required/>
             </div>
             <div>
                 <button>Join Now</button>
