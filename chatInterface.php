@@ -65,82 +65,12 @@
     </div>
 
 
-
-    <script>
-        const scrollToBottom = () => {
-            const container = document.getElementById("chatArea")
-            container.scrollTo(0, container.scrollHeight);
-        }
-        const chatEmojiDiv = document.getElementById("chatEmojiDiv")
-        chatEmojiDiv.style.display = "none"
-        const showEmoji = () => {
-            if (chatEmojiDiv.style.display === "none") {
-                chatEmojiDiv.style.display = "block";
-            } else {
-                chatEmojiDiv.style.display = "none"
-            }
-        }
-        const emojis = ["&#128578;", "&#128528;", "&#128533;", "&#128543;", "&#129321;"];
-
-        for (let i = 0; i < emojis.length; i++) {
-            const single_emoji = document.createElement("span")
-            single_emoji.innerHTML = emojis[i]
-            chatEmojiDiv.appendChild(single_emoji)
-
-            single_emoji.addEventListener("click", () => {
-                document.getElementById("sendTextBox").value += emojis[i]
-            })
-        }
-
-        const current_username = document.getElementById("current_username").value
-        document.body.onload = () => {
-            receiveInitialChats(current_username)
-            getLastMessageId()
-        }
-        //infinite receive chat multiple times => 
-        //check last message id => compare and push to innerHTML
-        // window.setInterval(() => {
-        //         receiveInitialChats(current_username);
-        //         scrolledBottom() && scrollToBottom();
-
-        //     }, 500)
-        const refreshChat = () => window.setTimeout(() => {
-            receiveInitialChats(current_username);
-            scrolledBottom() && scrollToBottom();
-            setTimeout(refreshChat, 500)
-        }, 500)
-        setTimeout(refreshChat, 500)
-        scrollToBottom();
-
-        const addToChat = () => {
-            const sendTextBox = document.getElementById("sendTextBox")
-            let chatData = sendTextBox.value
-            chatData = chatData.replace(/\s+/g, ' ').trim();
-
-            const chatArea = document.getElementById("chatArea")
-
-            // chatArea.innerHTML += `
-            //     <div class="messageSend">
-            //         <div class="nameBanner">${current_username[0].toUpperCase()}</div>
-            //         <div class="message">
-            //             ${chatData}
-            //         </div>
-            //     </div>
-            // `
-            sendTextBox.value = ""
-
-            scrollToBottom()
-            saveChatData(current_username, chatData)
-        }
-        document.querySelector('#sendTextBox').addEventListener('keypress', function (e) {
-            if (e.key === 'Enter') {
-                e.preventDefault()
-                addToChat()
-            }
-        });
-
-    </script>
     <script src="js/script.js"></script>
+    <!-- <script>
+
+
+    </script> -->
+
     <!-- <script src="https://cdn.rawgit.com/github/fetch/master/fetch.js" defer></script> -->
     <script src="js/html2canvas.js"></script>
 </body>
